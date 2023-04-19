@@ -1,15 +1,9 @@
-// UPDATE THIS FILE
-
 #include <vector>
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
 #include "Game.h"
-
 using namespace std;
-
-
-
 // set some attributes as default value
 // DO NOT CHANGE THIS CONSTRUCTOR
 Game::Game(int _width, int _height)
@@ -23,14 +17,10 @@ Game::Game(int _width, int _height)
 	// add new cheery in game initiation
 	addCherry();
 }
-
 Game::~Game()
 {
     //dtor
 }
-
-
-
 /*** 
  * PLEASE UPDATE THIS METHOD
  * 
@@ -102,8 +92,6 @@ void Game::processUserInput(Direction direction)
 {
     inputQueue.push(direction);
 }
-
-
 /***
  * PLEASE REPLACE LINES MARKED WITH '// YOUR CODE HERE'
  * 
@@ -119,6 +107,9 @@ void Game::processUserInput(Direction direction)
  * 
  ***/
 bool Game::canChange(Direction current, Direction next) const {
+	if (current == UP || current == DOWN) 
+		return 0; // YOUR CODE HERE
+	return 0;// YOUR CODE HERE
 	if ((current == UP || current == DOWN) && (next == UP || next == DOWN))
 		return 0;
 	if ((current == LEFT || current == RIGHT) && (next == LEFT || next == RIGHT))
@@ -141,17 +132,17 @@ bool Game::canChange(Direction current, Direction next) const {
  * 		// none
  * 
  ***/
-
 void Game::nextStep()
 {
 	while (!inputQueue.empty()) {
 		// get the input direction from input queue
+        Direction next ; // YOUR CODE HERE
         Direction next ;
 		next = inputQueue.front();
 
 		// remove the front of input queue
         // YOUR CODE HERE
-		 inputQueue.pop();
+        inputQueue.pop();
 
 		// check if snake can move to the next direction, set current direction as next
         if (canChange(currentDirection, next)) {
@@ -160,11 +151,8 @@ void Game::nextStep()
         	break;
 		}
     }
-
     snake.move(currentDirection);
 }
-
-
 /***
  * PLEASE REPLACE LINES MARKED WITH '// YOUR CODE HERE'
  * 
@@ -176,7 +164,6 @@ void Game::nextStep()
  * 		// none
  * 
  ***/
-
 void Game::addCherry()
 {
     do {
@@ -184,9 +171,9 @@ void Game::addCherry()
 		// Suggestion: use rand() function
 
         Position randomPos; // YOUR CODE HERE
-		Position randomPos;
+        Position randomPos;
 		randomPos = Position(rand() % width, rand() % height);
-		
+
 		// check if the randomPos is EMPTY 
         if (getCellType(randomPos) == CELL_EMPTY) {
 
@@ -201,8 +188,6 @@ void Game::addCherry()
         }
     } while (true);
 }
-
-
 /***
  * PLEASE UPDATE THIS METHOD
  * 
@@ -230,36 +215,29 @@ void Game::setCellType(Position pos, CellType cellType)
 }
 
 
-
 // DO NOT change this method
 CellType Game::getCellType(Position pos) const
 {
 	return pos.isInsideBox(0, 0, width, height) ? squares[pos.y][pos.x] : CELL_OFF_BOARD;
 }
-
 // DO NOT change this method
 vector<Position> Game::getSnakePositions() const
 {
     return snake.getPositions();
 }
-
 // DO NOT change this method
 GameStatus Game::getGameStatus(){
 	return status;
 }
-
 // DO NOT change this method
 int Game::getWidth(){
 	return width;
 }
-
 // DO NOT change this method
 int Game::getHeight(){
 	return height;
 }
-
 // DO NOT change this method
 Snake Game::getSnake(){
 	return snake;
 }
-

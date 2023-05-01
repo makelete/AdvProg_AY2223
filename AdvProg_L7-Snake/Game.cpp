@@ -42,12 +42,6 @@ Game::~Game()
 ***/
 
 void Game::snakeMoveTo(Position pos) {
-	//  START CODE HERE
-	//
-	//
-	//
-	//
-	// END CODE HERE
 	switch (getCellType(pos))
 	{
 	case CELL_SNAKE:
@@ -78,12 +72,6 @@ void Game::snakeMoveTo(Position pos) {
  ***/
 void Game::snakeLeave(Position position)
 {
-	// Suggestion: use setCellType() method in Game class
-	// START CODE HERE
-	//  
-	//
-	//
-	// END CODE HERE
 	setCellType(position, CELL_EMPTY);
 }
 
@@ -108,9 +96,6 @@ void Game::processUserInput(Direction direction)
  * 
  ***/
 bool Game::canChange(Direction current, Direction next) const {
-	if (current == UP || current == DOWN) 
-		return 0; // YOUR CODE HERE
-	return 0;// YOUR CODE HERE
 	if ( ((current == UP || current == DOWN) && (next == UP || next == DOWN) ) || ((current == LEFT || current == RIGHT) && (next == LEFT || next == RIGHT)) )
 		return false; // YOUR CODE HERE
 	return true;// YOUR CODE HERE
@@ -167,8 +152,6 @@ void Game::addCherry()
     do {
 		// init a random position inside the play screen (width, height)
 		// Suggestion: use rand() function
-
-        Position randomPos; // YOUR CODE HERE
 
         Position randomPos;
 		randomPos = Position(rand() % width, rand() % height);

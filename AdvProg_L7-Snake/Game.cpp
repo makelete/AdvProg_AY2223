@@ -1,3 +1,4 @@
+
 #include <vector>
 #include <cassert>
 #include <cstdlib>
@@ -110,11 +111,9 @@ bool Game::canChange(Direction current, Direction next) const {
 	if (current == UP || current == DOWN) 
 		return 0; // YOUR CODE HERE
 	return 0;// YOUR CODE HERE
-	if ((current == UP || current == DOWN) && (next == UP || next == DOWN))
-		return 0;
-	if ((current == LEFT || current == RIGHT) && (next == LEFT || next == RIGHT))
-		return 0;
-	return 1;
+	if ( ((current == UP || current == DOWN) && (next == UP || next == DOWN) ) || ((current == LEFT || current == RIGHT) && (next == LEFT || next == RIGHT)) )
+		return false; // YOUR CODE HERE
+	return true;// YOUR CODE HERE
 }
 
 
@@ -137,12 +136,11 @@ void Game::nextStep()
 	while (!inputQueue.empty()) {
 		// get the input direction from input queue
         Direction next ; // YOUR CODE HERE
-        Direction next ;
-		next = inputQueue.front();
 
+		next = inputQueue.front();
 		// remove the front of input queue
         // YOUR CODE HERE
-        inputQueue.pop();
+		inputQueue.pop();
 
 		// check if snake can move to the next direction, set current direction as next
         if (canChange(currentDirection, next)) {
@@ -171,6 +169,7 @@ void Game::addCherry()
 		// Suggestion: use rand() function
 
         Position randomPos; // YOUR CODE HERE
+
         Position randomPos;
 		randomPos = Position(rand() % width, rand() % height);
 
@@ -207,14 +206,12 @@ void Game::setCellType(Position pos, CellType cellType)
 	// Suggestion: use pos.isInsideBox(...) in Position class
 	//
 	// START CODE HERE
-	//  
-	// END CODE HERE
 	if (pos.isInsideBox(0, 0, width, height)){
 		squares[pos.y][pos.x] = cellType;
 	}
+	//  
+	// END CODE HERE
 }
-
-
 // DO NOT change this method
 CellType Game::getCellType(Position pos) const
 {
@@ -241,3 +238,4 @@ int Game::getHeight(){
 Snake Game::getSnake(){
 	return snake;
 }
+
